@@ -3,7 +3,7 @@ package academy.learnprogramming.studioghibliapp.repository
 import academy.learnprogramming.studioghibliapp.data.remote.GhibliApi
 import academy.learnprogramming.studioghibliapp.data.remote.responses.FilmList
 import academy.learnprogramming.studioghibliapp.data.remote.responses.FilmListItem
-import academy.learnprogramming.studioghibliapp.util.Resource
+import academy.learnprogramming.studioghibliapp.util.ResponseWrapper
 import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 
@@ -12,22 +12,22 @@ class FilmRepository @Inject constructor(
     private val api: GhibliApi
 ) {
 
-    suspend fun getFilmList(limit: Int): Resource<FilmList> {
+    suspend fun getFilmList(limit: Int): ResponseWrapper<FilmList> {
         val response = try {
             api.getGhibliFilmList(limit)
         } catch (e: Exception) {
-            return Resource.Error(e.message.toString())
+            return ResponseWrapper.Error(e.message.toString())
         }
-        return Resource.Success(response)
+        return ResponseWrapper.Success(response)
     }
 
 
-    suspend fun getFilmById(id: String): Resource<FilmListItem> {
+    suspend fun getFilmById(id: String): ResponseWrapper<FilmListItem> {
         val response = try {
             api.getFilmById(id)
         } catch (e: Exception) {
-            return Resource.Error(e.message.toString())
+            return ResponseWrapper.Error(e.message.toString())
         }
-        return Resource.Success(response)
+        return ResponseWrapper.Success(response)
     }
 }
