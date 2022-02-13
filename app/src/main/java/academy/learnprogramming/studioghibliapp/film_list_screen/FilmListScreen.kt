@@ -17,6 +17,7 @@ import androidx.navigation.NavController
 @Composable
 fun FilmListScreen(
     navController: NavController,
+    viewModel: FilmListScreenViewModel
 ) {
     Surface(
         color = MaterialTheme.colors.background,

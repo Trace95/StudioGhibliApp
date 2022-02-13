@@ -5,6 +5,7 @@ import academy.learnprogramming.studioghibliapp.data.remote.responses.FilmListIt
 import academy.learnprogramming.studioghibliapp.repository.FilmRepository
 import academy.learnprogramming.studioghibliapp.util.Constants.LIMIT
 import academy.learnprogramming.studioghibliapp.util.ResponseWrapper
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,17 +18,21 @@ class FilmListScreenViewModel @Inject constructor(
     private val repository: FilmRepository,
 ) : ViewModel() {
 
-    private var curPage = 0
-
-    var filmList = FilmList()
+    var filmList = mutableStateOf(FilmList())
     var loadError = mutableStateOf("")
     var isLoading = mutableStateOf(false)
 
-    fun loadFilmList() {
+    init {
+       // loadFilmList()
+    }
+
+
+    private fun loadFilmList() {
         viewModelScope.launch {
             isLoading.value = true
             when (val result = repository.getFilmList(limit = LIMIT)) {
                 is ResponseWrapper.Success -> {
+                    // Should this be in its own function dedicated for mapping results?
                     filmList = result.data?.mapIndexed { _, film ->
                         FilmListItem(
                             description = film.description,
@@ -48,7 +53,7 @@ class FilmListScreenViewModel @Inject constructor(
                             url = film.url,
                             vehicles = film.vehicles
                         )
-                    } as FilmList
+                    } as MutableState<FilmList>
                 }
                 is ResponseWrapper.Error -> {
                     loadError.value = error(message = result)
@@ -56,5 +61,4 @@ class FilmListScreenViewModel @Inject constructor(
             }
         }
     }
-
 }

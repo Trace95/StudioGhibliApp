@@ -1,14 +1,15 @@
 package academy.learnprogramming.studioghibliapp
 
 import academy.learnprogramming.studioghibliapp.film_list_screen.FilmListScreen
+import academy.learnprogramming.studioghibliapp.film_list_screen.FilmListScreenViewModel
 import academy.learnprogramming.studioghibliapp.ui.theme.StudioGhibliAppTheme
 import academy.learnprogramming.studioghibliapp.util.Screens.DETAIL_SCREEN
 import academy.learnprogramming.studioghibliapp.util.Screens.START_SCREEN
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.runtime.remember
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -18,6 +19,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: FilmListScreenViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -27,30 +31,23 @@ class MainActivity : ComponentActivity() {
                     navController = navController,
                     startDestination = START_SCREEN) {
                     composable(route = START_SCREEN) {
-
                     }
                     composable(
                         route = DETAIL_SCREEN,
                         arguments = listOf(
-                            navArgument("dominateColor") {
-                                type = NavType.IntType
-                            },
                             navArgument("movieTitle") {
                                 type = NavType.StringType
                             }
                         )
                     ) {
-                        val dominateColor = remember {
-                            val color = it.arguments?.getInt("dominateColor")
-                            color?.let { Color(it) } ?: Color.White
-                        }
                         val movieTitle = remember {
                             it.arguments?.getString("movieTitle")
                         }
 
                     }
                 }
-                FilmListScreen(navController = navController)
+                FilmListScreen(navController = navController,viewModel = viewModel)
+
             }
         }
     }
