@@ -10,6 +10,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,7 +26,6 @@ class FilmListScreenViewModel @Inject constructor(
     init {
          loadFilmList()
     }
-
 
     private fun loadFilmList() {
         viewModelScope.launch {
@@ -57,12 +57,16 @@ class FilmListScreenViewModel @Inject constructor(
                         Log.d("test",film.title)
                     }
                     filmList.value = newFilmList
+                    for (film in newFilmList){
+                    Log.d("test","FilmName: ${film.original_title + "\n"}")
+                    }
                 }
                 is ResponseWrapper.Error -> {
                     loadError.value = error(message = result)
                 }
             }
         }
+        isLoading.value = false
     }
 }
 

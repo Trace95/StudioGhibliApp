@@ -35,19 +35,18 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = DETAIL_SCREEN,
                         arguments = listOf(
-                            navArgument("movieTitle") {
+                            navArgument("movieID") {
                                 type = NavType.StringType
                             }
                         )
                     ) {
-                        val movieTitle = remember {
-                            it.arguments?.getString("movieTitle")
+                        val movieID = remember {
+                            it.arguments?.getString("movieID")
                         }
 
                     }
                 }
                 FilmListScreen(navController = navController,viewModel = viewModel)
-
             }
         }
     }

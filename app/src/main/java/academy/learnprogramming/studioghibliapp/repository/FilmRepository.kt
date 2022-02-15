@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @ActivityScoped
 class FilmRepository @Inject constructor(
-    private val api: GhibliApi
+    private val api: GhibliApi,
 ) {
 
     suspend fun getFilmList(limit: Int): ResponseWrapper<FilmList> {
@@ -20,7 +20,6 @@ class FilmRepository @Inject constructor(
         }
         return ResponseWrapper.Success(response)
     }
-
 
     suspend fun getFilmById(id: String): ResponseWrapper<FilmListItem> {
         val response = try {
