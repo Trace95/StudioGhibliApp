@@ -36,7 +36,7 @@ fun FilmPanel(
     ) {
         Row {
             CustomCoilImage(
-                url = "https://c.tenor.com/aARMnEHFZxQAAAAj/todoro-miyazaki.gif",
+                url = filmItem.image,
                 contentDesc = filmItem.description,
                 modifier = Modifier.padding(15.dp)
             )
@@ -50,7 +50,7 @@ fun FilmPanel(
                     modifier = modifier
                 )
                 Text(
-                    text = "Desc: " + filmItem.description,
+                    text = filmItem.description,
                     fontSize = 12.sp,
                     textAlign = TextAlign.Start,
                     modifier = modifier
