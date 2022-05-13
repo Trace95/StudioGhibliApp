@@ -11,7 +11,6 @@ import javax.inject.Inject
 class FilmRepository @Inject constructor(
     private val api: GhibliApi,
 ) {
-
     suspend fun getFilmList(limit: Int): ResponseWrapper<FilmList> {
         val response = try {
             api.getGhibliFilmList(limit)

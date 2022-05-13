@@ -5,8 +5,8 @@ object Constants {
     const val LIMIT = 20
 }
 
-object Screens {
-    const val START_SCREEN = "start_screen"
-    const val DETAIL_SCREEN = "detail_screen"
+sealed class Screen(val route: String) {
+    object FilmListScreen: Screen(route ="film_list_screen")
+    object FilmDetailScreen: Screen(route = "detail_screen")
 }
 

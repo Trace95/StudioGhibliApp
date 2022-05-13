@@ -2,8 +2,7 @@ package academy.learnprogramming.studioghibliapp.film_list_screen.components
 
 import academy.learnprogramming.studioghibliapp.data.remote.responses.FilmListItem
 import academy.learnprogramming.studioghibliapp.util.FilmItemDummy
-import android.widget.VideoView
-import androidx.compose.foundation.background
+import academy.learnprogramming.studioghibliapp.util.Screen
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,16 +10,18 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+
 
 @Composable
 fun FilmPanel(
+    navController: NavController,
     filmItem: FilmListItem,
-    // navController: NavController,
     modifier: Modifier = Modifier,
 ) {
     Box(
@@ -29,9 +30,7 @@ fun FilmPanel(
             .aspectRatio(2f)
             .shadow(5.dp, RoundedCornerShape(5.dp))
             .clickable {
-//                navController.navigate(
-//                    DETAIL_SCREEN
-//                )
+                navController.navigate(route = Screen.FilmDetailScreen.route)
             }
     ) {
         Row {
@@ -62,8 +61,8 @@ fun FilmPanel(
 
 @Preview
 @Composable
-fun FilmPannelPreview() {
-    FilmPanel(filmItem = FilmItemDummy.item)
+fun FilmPanelPreview() {
+    FilmPanel(filmItem = FilmItemDummy.item,navController = rememberNavController())
 }
 
 
