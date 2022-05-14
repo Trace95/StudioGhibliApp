@@ -2,7 +2,6 @@ package academy.learnprogramming.studioghibliapp.film_list_screen.components
 
 import academy.learnprogramming.studioghibliapp.data.remote.responses.FilmListItem
 import academy.learnprogramming.studioghibliapp.util.FilmItemDummy
-import academy.learnprogramming.studioghibliapp.util.Screen
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,7 +29,7 @@ fun FilmPanel(
             .aspectRatio(2f)
             .shadow(5.dp, RoundedCornerShape(5.dp))
             .clickable {
-                navController.navigate(route = Screen.FilmDetailScreen.route)
+                navController.navigate(route = "film_detail_screen/" + filmItem.id)
             }
     ) {
         Row {

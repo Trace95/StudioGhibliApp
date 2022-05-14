@@ -7,6 +7,6 @@ object Constants {
 
 sealed class Screen(val route: String) {
     object FilmListScreen: Screen(route ="film_list_screen")
-    object FilmDetailScreen: Screen(route = "detail_screen")
+    object FilmDetailScreen: Screen(route = "film_detail_screen/{id}")
 }
 

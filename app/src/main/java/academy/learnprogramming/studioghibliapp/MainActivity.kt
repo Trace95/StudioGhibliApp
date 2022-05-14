@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val viewModel: FilmListScreenViewModel by viewModels()
+
     lateinit var navController: NavHostController
 
     override fun onCreate(savedInstanceState: Bundle?) {
