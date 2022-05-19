@@ -9,8 +9,11 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,7 +38,8 @@ fun FilmListScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(150.dp)
-                    .align(CenterHorizontally)
+                    .align(CenterHorizontally),
+                colorFilter = ColorFilter.tint(Color.White)
             )
             SearchBar(
                 hint = "Search...",
@@ -46,7 +50,10 @@ fun FilmListScreen(
                 // Search behaviour
             }
             FilmList(navController = navController, filmList = viewModel.filmList.value)
-            Box( modifier = Modifier.align(alignment = CenterHorizontally)) {
+            Box(
+                Modifier.fillMaxSize(),
+                contentAlignment = Center
+            ) {
                 LoadingAnimation()
             }
         }

@@ -21,7 +21,6 @@ fun FilmList(
         content = {
             items(filmList) { film: FilmListItem ->
                 FilmPanel(filmItem = film, navController = navController)
-                Spacer(modifier = Modifier.height(10.dp))
             }
         })
 

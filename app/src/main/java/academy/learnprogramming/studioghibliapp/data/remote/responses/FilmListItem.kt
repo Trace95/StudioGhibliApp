@@ -1,5 +1,7 @@
 package academy.learnprogramming.studioghibliapp.data.remote.responses
 
+class FilmList : ArrayList<FilmListItem>()
+
 data class FilmListItem(
     val description: String,
     val director: String,
