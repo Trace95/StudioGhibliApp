@@ -32,7 +32,7 @@ fun SetupNavGraph(
                 type = NavType.StringType
             })
         ) {
-            FilmDetailScreen(it.id)
+            it.arguments?.getString("id")?.let { filmID -> FilmDetailScreen(filmID) }
         }
     }
 }

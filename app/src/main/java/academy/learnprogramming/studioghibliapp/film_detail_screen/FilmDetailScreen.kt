@@ -1,5 +1,7 @@
 package academy.learnprogramming.studioghibliapp.film_detail_screen
 
+import academy.learnprogramming.studioghibliapp.data.remote.responses.FilmListItem
+import academy.learnprogramming.studioghibliapp.util.FilmItemDummy
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -10,13 +12,13 @@ import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun FilmDetailScreen(
-    movieID: String
+    filmListItem: FilmListItem
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         backgroundColor = MaterialTheme.colors.background
     ) {
-        Text(text = movieID)
+        Text(text = filmListItem.id)
 
     }
 }
@@ -24,5 +26,5 @@ fun FilmDetailScreen(
 @Preview(showBackground = true)
 @Composable
 fun FilmDetailScreenPreview(){
-    FilmDetailScreen("123")
+    FilmDetailScreen(filmListItem = FilmItemDummy.item)
 }
