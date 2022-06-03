@@ -2,6 +2,7 @@ package academy.learnprogramming.studioghibliapp.di
 
 import academy.learnprogramming.studioghibliapp.data.remote.GhibliApi
 import academy.learnprogramming.studioghibliapp.repository.FilmRepository
+import academy.learnprogramming.studioghibliapp.repository.FilmRepositoryImpl
 import academy.learnprogramming.studioghibliapp.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -19,7 +20,7 @@ object AppModule {
     @Provides
     fun provideGhibliRepository(
         api: GhibliApi,
-    ) = FilmRepository(api)
+    ): FilmRepository = FilmRepositoryImpl(api)
 
     @Singleton
     @Provides

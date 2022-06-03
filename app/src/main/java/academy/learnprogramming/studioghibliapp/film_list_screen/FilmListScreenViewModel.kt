@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.fold
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,19 +21,27 @@ class FilmListScreenViewModel @Inject constructor(
     var isLoading = mutableStateOf(false)
 
     init {
-        loadFilmList()
+        getFilmList()
+        updateFilmList()
     }
 
-    private fun loadFilmList() {
+    private fun getFilmList() {
         viewModelScope.launch {
             isLoading.value = true
-            repository.getFilmList().collect {
-                it.fold(
+            repository.filmDataStateFlow.collect { result ->
+                result.fold(
                     { newFilmList -> filmList.value = newFilmList },
                     { exception -> loadError.value = exception.message.toString() })
             }
             isLoading.value = false
         }
     }
+
+    private fun updateFilmList() {
+        viewModelScope.launch {
+            repository.fetchFilmListFromAPI()
+        }
+    }
+
 }
 

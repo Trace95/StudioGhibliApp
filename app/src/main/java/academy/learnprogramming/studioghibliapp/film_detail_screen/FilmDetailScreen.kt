@@ -1,6 +1,7 @@
 package academy.learnprogramming.studioghibliapp.film_detail_screen
 
 import academy.learnprogramming.studioghibliapp.data.remote.responses.FilmListItem
+import academy.learnprogramming.studioghibliapp.film_list_screen.components.CustomCoilImage
 import academy.learnprogramming.studioghibliapp.util.FilmItemDummy
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
@@ -18,13 +19,16 @@ fun FilmDetailScreen(
         modifier = Modifier.fillMaxSize(),
         backgroundColor = MaterialTheme.colors.background
     ) {
-        Text(text = filmListItem.id)
+        CustomCoilImage(
+            url = filmListItem.movie_banner,
+            contentDesc = filmListItem.title + " Image"
+        )
 
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun FilmDetailScreenPreview(){
+fun FilmDetailScreenPreview() {
     FilmDetailScreen(filmListItem = FilmItemDummy.item)
 }

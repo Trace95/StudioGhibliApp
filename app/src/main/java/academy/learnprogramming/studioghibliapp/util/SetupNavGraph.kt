@@ -1,6 +1,7 @@
 package academy.learnprogramming.studioghibliapp.util
 
 import academy.learnprogramming.studioghibliapp.film_detail_screen.FilmDetailScreen
+import academy.learnprogramming.studioghibliapp.film_detail_screen.FilmDetailScreenViewModel
 import academy.learnprogramming.studioghibliapp.film_list_screen.FilmListScreen
 import academy.learnprogramming.studioghibliapp.film_list_screen.FilmListScreenViewModel
 import androidx.compose.runtime.Composable
@@ -14,6 +15,7 @@ import androidx.navigation.navArgument
 fun SetupNavGraph(
     navController: NavHostController,
     filmListScreenViewModel: FilmListScreenViewModel,
+    filmDetailScreenViewModel: FilmDetailScreenViewModel
 ) {
     NavHost(
         navController = navController,
@@ -32,7 +34,7 @@ fun SetupNavGraph(
                 type = NavType.StringType
             })
         ) {
-            it.arguments?.getString("id")?.let { filmID -> FilmDetailScreen(filmID) }
+            it.arguments?.getString("id")?.let { filmID -> FilmDetailScreen(FilmItemDummy.item) }
         }
     }
 }
